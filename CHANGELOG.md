@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.0.0] - 2026-02-11
 
 ### Added
+
 - Initial release
 - `Client` class with HMAC-SHA256 signature authentication
 - `CV` resource: generate, get, enhance, delete methods

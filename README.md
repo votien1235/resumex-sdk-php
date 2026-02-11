@@ -22,15 +22,15 @@ Add to your `composer.json`:
 
 ```json
 {
-    "repositories": [
-        {
-            "type": "path",
-            "url": "../packages/resumex-sdk-php"
-        }
-    ],
-    "require": {
-        "resumex/sdk": "*"
+  "repositories": [
+    {
+      "type": "path",
+      "url": "../packages/resumex-sdk-php"
     }
+  ],
+  "require": {
+    "resumex/sdk": "*"
+  }
 }
 ```
 
@@ -235,7 +235,7 @@ try {
     $message = $e->getMessage();
     $errorCode = $e->getErrorCode();
     $statusCode = $e->getStatusCode();
-    
+
     // Check error type
     if ($e->isRateLimitError()) {
         // Handle rate limiting - wait and retry
@@ -245,7 +245,7 @@ try {
         // Get validation errors
         $errors = $e->getErrors();
     }
-    
+
     Log::error('ResumeX API Error', [
         'message' => $message,
         'code' => $errorCode,
@@ -321,7 +321,7 @@ class ResumeController extends Controller
     public function quota()
     {
         $quota = ResumeX::partner()->getQuota();
-        
+
         return response()->json([
             'tier' => $quota['tier'],
             'used' => $quota['used'],
@@ -346,17 +346,17 @@ Route::middleware('auth:sanctum')->group(function () {
 
 ```html
 <!-- Embed CV Editor in iframe -->
-<iframe 
-    src="{{ $editorUrl }}" 
-    width="100%" 
-    height="800px"
-    frameborder="0"
-    allow="clipboard-write"
+<iframe
+  src="{{ $editorUrl }}"
+  width="100%"
+  height="800px"
+  frameborder="0"
+  allow="clipboard-write"
 ></iframe>
 
 <!-- Or redirect to editor -->
 <script>
-    window.location.href = '{{ $editorUrl }}';
+  window.location.href = "{{ $editorUrl }}";
 </script>
 ```
 

@@ -5,17 +5,20 @@ Thank you for your interest in contributing to the ResumeX PHP SDK!
 ## Development Setup
 
 1. Clone the repository:
+
 ```bash
 git clone https://github.com/resumex/sdk-php.git
 cd sdk-php
 ```
 
 2. Install dependencies:
+
 ```bash
 composer install
 ```
 
 3. Run tests:
+
 ```bash
 ./vendor/bin/phpunit
 ```
@@ -38,6 +41,7 @@ We follow PSR-12 coding standards. Please ensure your code is properly formatted
 ## Reporting Bugs
 
 Please use GitHub Issues to report bugs. Include:
+
 - PHP version
 - Laravel version (if applicable)
 - SDK version
