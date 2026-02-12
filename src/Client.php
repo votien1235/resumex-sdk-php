@@ -87,7 +87,10 @@ class Client
     {
         $timestamp = time();
         $url = '/api/v1/' . ltrim($endpoint, '/');
-        $body = empty($data) ? '' : json_encode($data);
+        
+        // IMPORTANT: Use the same JSON string for both signature and request body
+        // to ensure consistency. Use JSON_UNESCAPED_UNICODE to match how NestJS parses the body
+        $body = empty($data) ? '' : json_encode($data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 
         // Generate HMAC signature
         $signature = $this->generateSignature($method, $url, $timestamp, $body);
@@ -102,8 +105,10 @@ class Client
             'headers' => $headers,
         ];
 
+        // Use 'body' instead of 'json' to send the exact same string used for signature
         if (!empty($data)) {
-            $options['json'] = $data;
+            $options['body'] = $body;
+            $options['headers']['Content-Type'] = 'application/json';
         }
 
         try {
