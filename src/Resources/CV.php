@@ -142,6 +142,89 @@ class CV extends Resource
     }
 
     /**
+     * Update an existing CV
+     * 
+     * @param string $cvId The CV ID to update
+     * @param array $data CV data to update (same structure as generate())
+     * @return array Updated CV details
+     * @throws ResumeXException
+     * 
+     * @example Update standard CV
+     * $updatedCv = $client->cv()->update('cv_xyz789', [
+     *     'firstName' => 'NGUYEN VAN',
+     *     'lastName' => 'B',
+     *     'phoneNumber' => '0987-654-321',
+     *     'location' => 'Tokyo, Japan',
+     *     'professionalSummary' => 'Updated summary...',
+     *     'workExperience' => [
+     *         [
+     *             'company' => 'New Company',
+     *             'position' => 'Lead Engineer',
+     *             'location' => 'Tokyo',
+     *             'date' => 'Jan 2026 - Present',
+     *             'description' => ['Leading team of 5...'],
+     *         ],
+     *     ],
+     * ]);
+     * 
+     * @example Update Japanese CV (professional-grid)
+     * $updatedCv = $client->cv()->update('cv_xyz789', [
+     *     'webCv' => [
+     *         'lastName' => '山田',
+     *         'firstName' => '太郎',
+     *         'lastNameFurigana' => 'ヤマダ',
+     *         'firstNameFurigana' => 'タロウ',
+     *         'birthDate' => '1990-05-15',
+     *         'gender' => 'male',
+     *         'email' => 'updated@example.com',
+     *         'phone' => '090-9999-8888',
+     *         'postalCode' => '100-0002',
+     *         'prefecture' => '東京都',
+     *         'city' => '千代田区',
+     *         'address' => '丸の内2-2-2',
+     *         'careerHistory' => [
+     *             [
+     *                 'date' => '2015年4月',
+     *                 'event' => '○○株式会社 入社',
+     *             ],
+     *             [
+     *                 'date' => '2020年3月',
+     *                 'event' => '○○株式会社 退社',
+     *             ],
+     *             [
+     *                 'date' => '2020年4月',
+     *                 'event' => '△△株式会社 入社',
+     *             ],
+     *         ],
+     *         'licenses' => [
+     *             [
+     *                 'date' => '2018年6月',
+     *                 'name' => '普通自動車第一種運転免許',
+     *             ],
+     *         ],
+     *         'selfPr' => '更新された自己PR...',
+     *         'motivation' => '更新された志望動機...',
+     *     ],
+     * ]);
+     * 
+     * // Returns:
+     * // [
+     * //     'id' => 'cv_xyz789',
+     * //     'userId' => 'user_123',
+     * //     'firstName' => 'NGUYEN VAN',
+     * //     'lastName' => 'B',
+     * //     'email' => 'example@example.com',
+     * //     'phoneNumber' => '0987-654-321',
+     * //     'webCv' => [...],
+     * //     'updatedAt' => '2026-03-12T11:00:00Z',
+     * // ]
+     */
+    public function update(string $cvId, array $data): array
+    {
+        return $this->client->request('PATCH', "resumes/{$cvId}", $data);
+    }
+
+    /**
      * Get CV details
      * 
      * @param string $cvId The CV ID

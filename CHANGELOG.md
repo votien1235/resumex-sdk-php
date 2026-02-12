@@ -5,6 +5,35 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.0] - 2026-03-12
+
+### Added
+
+- **`update()` method in CV resource** - Update existing CVs via PATCH API
+  - Supports both standard CVs (classic, basic, two-column-modern) and Japanese CVs (professional-grid)
+  - Same data structure as `generate()` for consistency
+  - Supports partial updates (only changed fields)
+  - Example: `ResumeX::cv()->update($cvId, ['firstName' => 'Updated Name'])`
+- **Bidirectional sync support** - Partners can now push updates from their systems to ResumeX
+- **Comprehensive example file** - Added `examples/update-cv.php` with 4 real-world use cases:
+  1. Update standard CV
+  2. Update Japanese CV
+  3. Partial update
+  4. Bidirectional sync integration
+
+### Documentation
+
+- Updated API Reference section with `update()` method examples
+- Added update examples for both standard and Japanese CVs
+- Documented bidirectional sync use case
+
+### Benefits for Partners
+
+- Always fresh data when users open the CV editor
+- No need for users to re-enter data in ResumeX
+- Enables true bidirectional sync (ResumeX ↔️ Partner System)
+- Flexible updates (full or partial)
+
 ## [1.1.1] - 2026-02-12
 
 ### Fixed

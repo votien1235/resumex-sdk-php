@@ -372,6 +372,34 @@ $cv = ResumeX::cv()->generate([...]);
 // Get CV details
 $cv = ResumeX::cv()->get('cv_xyz789');
 
+// Update existing CV (same structure as generate())
+$updatedCv = ResumeX::cv()->update('cv_xyz789', [
+    'firstName' => 'NGUYEN VAN',
+    'lastName' => 'B',
+    'phoneNumber' => '0987-654-321',
+    'location' => 'Tokyo, Japan',
+    'professionalSummary' => 'Updated summary...',
+    'workExperience' => [
+        [
+            'company' => 'New Company',
+            'position' => 'Lead Engineer',
+            'location' => 'Tokyo',
+            'date' => 'Jan 2026 - Present',
+            'description' => ['Leading team of 5...'],
+        ],
+    ],
+    // Or for Japanese CV:
+    'webCv' => [
+        'lastName' => '山田',
+        'firstName' => '太郎',
+        'careerHistory' => [
+            ['date' => '2015年4月', 'event' => '○○株式会社 入社'],
+            ['date' => '2020年3月', 'event' => '○○株式会社 退社'],
+        ],
+        'selfPr' => '更新された自己PR...',
+    ],
+]);
+
 // Enhance CV with AI
 $enhanced = ResumeX::cv()->enhance('cv_xyz789', [
     'sections' => ['summary', 'experience'],
