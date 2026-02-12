@@ -117,67 +117,109 @@ return redirect($editorUrl);
 
 ### Japanese CV (professional-grid template)
 
-For Japanese CVs (履歴書), use the `professional-grid` template with `webCv` field:
+For Japanese CVs (履歴書・職務経歴書), use the `professional-grid` template:
 
 ```php
 use ResumeX\Facades\ResumeX;
 
 $cv = ResumeX::cv()->generate([
-    // Required fields
+    // ============================================
+    // Required fields (top-level)
+    // ============================================
     'userId' => 'user_123',
     'templateId' => 'professional-grid',
     'email' => 'user@example.com',
 
-    // Japanese CV specific fields
+    // ============================================
+    // Basic Info (top-level for Japanese CV)
+    // ============================================
+    'firstName' => '太郎',
+    'lastName' => '山田',
+    'firstNameKatana' => 'タロウ',
+    'lastNameKatana' => 'ヤマダ',
+    'phoneNumber' => '090-1234-5678',
+    'postCode' => '100-0001',
+    'location' => '東京都千代田区丸の内1-1-1',
+
+    // Birth Date (split into year, month, day)
+    'birthYear' => '1990',
+    'birthMonth' => '5',
+    'birthDay' => '15',
+    'gender' => 'male',   // 'male' | 'female' | 'other'
+
+    // Profile Photo
+    'profilePhoto' => 'https://example.com/photo.jpg',
+
+    // ============================================
+    // Standard CV sections (if you have them)
+    // ============================================
+    'workExperience' => [
+        [
+            'company' => '株式会社ABC',
+            'position' => 'システムエンジニア',
+            'location' => '東京',
+            'date' => '2020年4月 - 現在',
+            'description' => ['Webアプリケーションの設計・開発'],
+            'technologies' => ['PHP', 'Laravel', 'React'],
+        ],
+    ],
+    'education' => [
+        [
+            'school' => '東京大学',
+            'degree' => '学士',
+            'field' => '情報工学',
+            'location' => '東京',
+            'date' => '2012年4月 - 2016年3月',
+            'gpa' => '',
+            'achievements' => [],
+        ],
+    ],
+    'skills' => [],
+
+    // ============================================
+    // Japanese CV specific fields (webCv)
+    // ============================================
     'webCv' => [
-        // Basic Info
-        'lastName' => '山田',
-        'firstName' => '太郎',
-        'lastNameFurigana' => 'ヤマダ',
-        'firstNameFurigana' => 'タロウ',
-        'birthDate' => '1990-05-15',
-        'gender' => 'male',   // 'male' | 'female' | 'other'
-        'email' => 'user@example.com',
-        'phone' => '090-1234-5678',
-
-        // Address
-        'postalCode' => '100-0001',
-        'prefecture' => '東京都',
-        'city' => '千代田区',
-        'address' => '丸の内1-1-1',
-        'building' => 'ビル名101',
-
-        // Photo (optional)
-        'photoUrl' => 'https://example.com/photo.jpg',
-        // or use base64: 'photoBase64' => 'data:image/jpeg;base64,...',
-
-        // Career History
-        'careerHistory' => [
-            ['date' => '2015年4月', 'event' => '○○株式会社 入社'],
-            ['date' => '2020年3月', 'event' => '○○株式会社 退社'],
-            ['date' => '2020年4月', 'event' => '△△株式会社 入社'],
+        // Qualifications list (資格一覧)
+        'qualificationList' => [
+            ['date' => '2018年6月', 'qualification_name' => '普通自動車第一種運転免許'],
+            ['date' => '2019年12月', 'qualification_name' => 'TOEIC 850点'],
         ],
 
-        // Licenses & Qualifications
-        'licenses' => [
-            ['date' => '2018年6月', 'name' => '普通自動車第一種運転免許'],
-            ['date' => '2019年12月', 'name' => 'TOEIC 850点'],
+        // Detailed work experience for 職務経歴書
+        'cv_work_experience' => [
+            [
+                'company_name' => '株式会社○○',
+                'business_description' => 'Webサービス開発',
+                'capital' => '1000万円',
+                'employee_number' => '50',
+                'classification' => '1',  // 1=正社員
+                'job_type' => 'エンジニア',
+                'job_detail' => 'システム開発・保守',
+                'sales' => '5億円',
+                'retirement' => '0',  // 0=在職中, 1=退職済み
+                'affiliation_period_year' => '2020',
+                'affiliation_period_month' => '4',
+                'affiliation_period_day' => '1',
+                'affiliation_period_end_year' => '',
+                'affiliation_period_end_month' => '',
+                'affiliation_period_end_day' => '',
+            ],
         ],
 
-        // Self PR & Motivation
-        'selfPr' => '私の強みはチームワークとコミュニケーション能力です...',
-        'motivation' => '御社の先進的な技術と企業文化に魅力を感じ...',
+        // Japanese CV text sections
+        'applying_info' => '御社の先進的な技術と企業文化に魅力を感じ...',
+        'experience_info' => '私の強みはチームワークとコミュニケーション能力です...',
+        'personal_info' => '特になし',
+        'cv_job_summary' => 'IT業界で10年以上の経験を持つエンジニア',
+        'cv_experience_skill_knowledge' => 'PHP, Laravel, React, AWS',
+        'cv_qualifications_held' => '普通自動車免許、TOEIC 850点',
+        'cv_self_promotion' => '新しい技術への学習意欲が高く...',
 
-        // Commute & Dependents
-        'commuteTime' => '45分',
-        'dependents' => '2人',
-        'spouse' => 'あり',
-        'spouseSupportObligation' => 'なし',
-
-        // Preferences
-        'desiredSalary' => '500万円',
-        'specialSkills' => 'TOEIC 850点、英語での業務経験あり',
-        'requests' => '特になし',
+        // Family info
+        'spouse' => 1,  // 0=なし, 1=あり
+        'spouse_support' => 0,  // 0=なし, 1=あり
+        'commuting_time' => '45分',
     ],
 
     'preferences' => [
@@ -217,34 +259,55 @@ $cv = ResumeX::cv()->generate([
 
 #### Japanese CV Fields (professional-grid)
 
-| Field                           | Type   | Description                     |
-| ------------------------------- | ------ | ------------------------------- |
-| `webCv.lastName`                | string | 姓 (Last name in kanji)         |
-| `webCv.firstName`               | string | 名 (First name in kanji)        |
-| `webCv.lastNameFurigana`        | string | ふりがな (Last name reading)    |
-| `webCv.firstNameFurigana`       | string | ふりがな (First name reading)   |
-| `webCv.birthDate`               | string | 生年月日 (YYYY-MM-DD format)    |
-| `webCv.gender`                  | string | 性別: `male`, `female`, `other` |
-| `webCv.email`                   | string | メールアドレス                  |
-| `webCv.phone`                   | string | 電話番号                        |
-| `webCv.postalCode`              | string | 郵便番号                        |
-| `webCv.prefecture`              | string | 都道府県                        |
-| `webCv.city`                    | string | 市区町村                        |
-| `webCv.address`                 | string | 番地                            |
-| `webCv.building`                | string | 建物名                          |
-| `webCv.photoUrl`                | string | Photo URL                       |
-| `webCv.photoBase64`             | string | Photo as base64 data URI        |
-| `webCv.careerHistory`           | array  | 学歴・職歴                      |
-| `webCv.licenses`                | array  | 免許・資格                      |
-| `webCv.selfPr`                  | string | 自己PR                          |
-| `webCv.motivation`              | string | 志望動機                        |
-| `webCv.commuteTime`             | string | 通勤時間                        |
-| `webCv.dependents`              | string | 扶養家族数                      |
-| `webCv.spouse`                  | string | 配偶者: `あり` or `なし`        |
-| `webCv.spouseSupportObligation` | string | 配偶者の扶養義務                |
-| `webCv.desiredSalary`           | string | 希望給与                        |
-| `webCv.specialSkills`           | string | 特技・趣味                      |
-| `webCv.requests`                | string | 本人希望欄                      |
+**Top-level fields:**
+
+| Field              | Type   | Description                     |
+| ------------------ | ------ | ------------------------------- |
+| `firstName`        | string | 名 (First name in kanji)        |
+| `lastName`         | string | 姓 (Last name in kanji)         |
+| `firstNameKatana`  | string | ふりがな (First name reading)   |
+| `lastNameKatana`   | string | ふりがな (Last name reading)    |
+| `phoneNumber`      | string | 電話番号                        |
+| `postCode`         | string | 郵便番号                        |
+| `location`         | string | 住所 (Full address)             |
+| `birthYear`        | string | 生年月日 - 年                   |
+| `birthMonth`       | string | 生年月日 - 月                   |
+| `birthDay`         | string | 生年月日 - 日                   |
+| `gender`           | string | 性別: `male`, `female`, `other` |
+| `profilePhoto`     | string | Photo URL                       |
+| `workExperience[]` | array  | 職歴 (simple format for 履歴書) |
+| `education[]`      | array  | 学歴 (simple format for 履歴書) |
+
+**webCv object (Japanese-specific fields):**
+
+| Field                                                 | Type   | Description                          |
+| ----------------------------------------------------- | ------ | ------------------------------------ |
+| `webCv.qualificationList[]`                           | array  | 資格一覧 (Licenses & Qualifications) |
+| `webCv.qualificationList[].date`                      | string | 取得年月 (e.g., "2018年6月")         |
+| `webCv.qualificationList[].qualification_name`        | string | 資格名                               |
+| `webCv.cv_work_experience[]`                          | array  | 職務経歴詳細 (Detailed work history) |
+| `webCv.cv_work_experience[].company_name`             | string | 会社名                               |
+| `webCv.cv_work_experience[].business_description`     | string | 事業内容                             |
+| `webCv.cv_work_experience[].capital`                  | string | 資本金                               |
+| `webCv.cv_work_experience[].employee_number`          | string | 従業員数                             |
+| `webCv.cv_work_experience[].classification`           | string | 雇用形態 (1=正社員, etc.)            |
+| `webCv.cv_work_experience[].job_type`                 | string | 職種                                 |
+| `webCv.cv_work_experience[].job_detail`               | string | 職務内容                             |
+| `webCv.cv_work_experience[].sales`                    | string | 売上高                               |
+| `webCv.cv_work_experience[].retirement`               | string | 0=在職中, 1=退職済み                 |
+| `webCv.cv_work_experience[].affiliation_period_year`  | string | 入社年                               |
+| `webCv.cv_work_experience[].affiliation_period_month` | string | 入社月                               |
+| `webCv.cv_work_experience[].affiliation_period_day`   | string | 入社日                               |
+| `webCv.applying_info`                                 | string | 志望動機                             |
+| `webCv.experience_info`                               | string | 自己PR・特技・長所など               |
+| `webCv.personal_info`                                 | string | 本人希望記入欄                       |
+| `webCv.cv_job_summary`                                | string | 職務要約                             |
+| `webCv.cv_experience_skill_knowledge`                 | string | 活かせる経験・スキル・知識           |
+| `webCv.cv_qualifications_held`                        | string | 保有資格                             |
+| `webCv.cv_self_promotion`                             | string | 自己PR                               |
+| `webCv.spouse`                                        | int    | 配偶者: 0=なし, 1=あり               |
+| `webCv.spouse_support`                                | int    | 配偶者の扶養義務: 0=なし, 1=あり     |
+| `webCv.commuting_time`                                | string | 通勤時間                             |
 
 ### Using Dependency Injection
 

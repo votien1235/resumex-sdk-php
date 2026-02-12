@@ -5,6 +5,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.1] - 2026-02-12
+
+### Fixed
+
+- **BREAKING DOC FIX**: Corrected Japanese CV field names in documentation to match actual API
+  - Basic info fields moved to top-level (firstName, lastName, birthYear, etc.)
+  - Updated webCv field structure with correct names:
+    - `qualificationList` instead of `licenses`
+    - `cv_work_experience` instead of `careerHistory`
+    - `applying_info`, `experience_info`, `personal_info`, etc. instead of old names
+  - Spouse/spouse_support now use numeric values (0/1) instead of strings
+- Fixed `ResumeXException` to handle array messages from API validation errors
+
+### Documentation
+
+- Updated all Japanese CV examples to use correct field structure
+- Added complete field reference table matching backend API
+- Clarified top-level vs webCv field organization
+
 ## [1.1.0] - 2026-02-12
 
 ### Added

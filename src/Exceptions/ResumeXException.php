@@ -43,7 +43,16 @@ class ResumeXException extends Exception
             $data = json_decode($body, true);
 
             if (is_array($data)) {
-                $message = $data['message'] ?? $message;
+                // Handle message - could be string or array
+                if (isset($data['message'])) {
+                    if (is_array($data['message'])) {
+                        // If message is array, convert to string
+                        $message = json_encode($data['message']);
+                    } else {
+                        $message = $data['message'];
+                    }
+                }
+                
                 $errorCode = $data['errorCode'] ?? null;
                 $errors = $data['errors'] ?? null;
             }
