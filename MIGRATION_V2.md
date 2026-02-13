@@ -8,8 +8,8 @@ Version 2.0 introduces a **breaking change** in how dates are structured for wor
 
 The old free-text `date` field has been replaced with three structured fields:
 
-- `startDate` (string, required) - Format: `YYYY-MM` or `YYYY`
-- `endDate` (string|null, optional) - Format: `YYYY-MM` or `YYYY`, `null` if currently ongoing
+- `startDate` (string, required) - Format: `MM/YYYY` or `YYYY`
+- `endDate` (string|null, optional) - Format: `MM/YYYY` or `YYYY`, `null` if currently ongoing
 - `isPresent` (boolean, required) - `true` if currently ongoing, `false` otherwise
 
 ### Why This Change?
@@ -57,7 +57,7 @@ The old free-text `date` field has been replaced with three structured fields:
         'company' => 'ABC Corporation',
         'position' => 'Senior Engineer',
         'location' => 'Tokyo',
-        'startDate' => '2020-01',
+        'startDate' => '01/2020',
         'endDate' => null,
         'isPresent' => true,
         'description' => ['Led development team...'],
@@ -131,8 +131,8 @@ The old free-text `date` field has been replaced with three structured fields:
     [
         'name' => 'E-commerce Platform',
         'description' => ['Built scalable platform...'],
-        'startDate' => '2024-01',
-        'endDate' => '2024-12',
+        'startDate' => '01/2024',
+        'endDate' => '12/2024',
         'isPresent' => false,
         'technologies' => ['Laravel', 'React', 'AWS'],
         'url' => 'https://project.com',
@@ -170,7 +170,7 @@ The old free-text `date` field has been replaced with three structured fields:
             [
                 'name' => 'AWS Certified Solutions Architect',
                 'organization' => 'Amazon Web Services',
-                'startDate' => '2024-03',
+                'startDate' => '03/2024',
                 'endDate' => null,
                 'isPresent' => false,
                 'description' => 'Professional level certification',
@@ -219,7 +219,7 @@ function convertDateFormat(string $dateString): array
 }
 
 /**
- * Parse a date string to YYYY-MM format
+ * Parse a date string to MM/YYYY format
  */
 function parseDate(string $dateStr): string
 {
@@ -280,7 +280,7 @@ $newWorkExperience = array_map(function ($item) {
 //     [
 //         'company' => 'ABC Corp',
 //         'position' => 'Engineer',
-//         'startDate' => '2020-01',
+//         'startDate' => '01/2020',
 //         'endDate' => null,
 //         'isPresent' => true,
 //         // other fields...
@@ -294,14 +294,14 @@ $newWorkExperience = array_map(function ($item) {
 
 ### Recommended Formats
 
-✅ **YYYY-MM** (e.g., `2020-01`, `2024-12`) - Preferred  
+✅ **MM/YYYY** (e.g., `2020-01`, `2024-12`) - Preferred  
 ✅ **YYYY** (e.g., `2020`, `2024`) - For year-only dates
 
 ### Examples
 
 ```php
 // Current position
-'startDate' => '2020-01',
+'startDate' => '01/2020',
 'endDate' => null,
 'isPresent' => true,
 
@@ -316,7 +316,7 @@ $newWorkExperience = array_map(function ($item) {
 'isPresent' => false,
 
 // Ongoing education
-'startDate' => '2023-04',
+'startDate' => '04/2023',
 'endDate' => null,
 'isPresent' => true,
 ```
@@ -339,7 +339,7 @@ $cv = ResumeX::cv()->generate([
         [
             'company' => 'Test Company',
             'position' => 'Test Position',
-            'startDate' => '2020-01',
+            'startDate' => '01/2020',
             'endDate' => null,
             'isPresent' => true,
             'description' => ['Test description'],
@@ -356,7 +356,7 @@ $updated = ResumeX::cv()->update($cv['cvId'], [
         [
             'company' => 'Updated Company',
             'position' => 'Updated Position',
-            'startDate' => '2021-06',
+            'startDate' => '06/2021',
             'endDate' => null,
             'isPresent' => true,
             'description' => ['Updated description'],

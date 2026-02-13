@@ -8,7 +8,7 @@ Official PHP SDK for ResumeX API - AI-powered CV generation platform.
 
 - **Before**: `'date' => 'Jan 2020 - Present'` (free-text string)
 - **After**: Three structured fields:
-  - `'startDate' => '2020-01'` (required, format: YYYY-MM or YYYY)
+  - `'startDate' => '01/2020'` (required, format: YYYY-MM or YYYY)
   - `'endDate' => null` (optional, null if ongoing)
   - `'isPresent' => true` (required, true if currently ongoing)
 
@@ -99,7 +99,7 @@ $cv = ResumeX::cv()->generate([
             'company' => 'ABC Tech Company',
             'position' => 'Senior Software Engineer',
             'location' => 'Tokyo',
-            'startDate' => '2020-01',
+            'startDate' => '01/2020',
             'endDate' => null,
             'isPresent' => true,
             'description' => ['Led development of microservices architecture...'],
@@ -125,8 +125,8 @@ $cv = ResumeX::cv()->generate([
         [
             'name' => 'E-commerce Platform',
             'description' => ['Built scalable microservices architecture', 'Handled 10k+ daily transactions'],
-            'startDate' => '2024-01',
-            'endDate' => '2024-12',
+            'startDate' => '01/2024',
+            'endDate' => '12/2024',
             'isPresent' => false,
             'technologies' => ['Laravel', 'React', 'AWS', 'Docker'],
             'url' => 'https://project-demo.com',
@@ -140,7 +140,7 @@ $cv = ResumeX::cv()->generate([
                 [
                     'name' => 'AWS Certified Solutions Architect',
                     'organization' => 'Amazon Web Services',
-                    'startDate' => '2024-03',
+                    'startDate' => '03/2024',
                     'endDate' => null,
                     'isPresent' => false,
                     'description' => 'Professional level certification',
@@ -148,7 +148,7 @@ $cv = ResumeX::cv()->generate([
                 [
                     'name' => 'Laravel Certified Developer',
                     'organization' => 'Laravel',
-                    'startDate' => '2023-06',
+                    'startDate' => '06/2023',
                     'endDate' => null,
                     'isPresent' => false,
                 ],
@@ -160,7 +160,7 @@ $cv = ResumeX::cv()->generate([
                 [
                     'name' => 'Building Scalable APIs with Laravel',
                     'organization' => 'Medium',
-                    'startDate' => '2023-11',
+                    'startDate' => '11/2023',
                     'endDate' => null,
                     'isPresent' => false,
                     'description' => 'Technical article with 5k+ views',
@@ -223,7 +223,7 @@ $cv = ResumeX::cv()->generate([
             'company' => '株式会社ABC',
             'position' => 'システムエンジニア',
             'location' => '東京',
-            'startDate' => '2020-04',
+            'startDate' => '04/2020',
             'endDate' => null,
             'isPresent' => true,
             'description' => ['Webアプリケーションの設計・開発'],
@@ -332,8 +332,8 @@ All array items in `workExperience`, `education`, `projects`, and `additionalInf
 
 | Field       | Type         | Required | Description                                         | Example               |
 | ----------- | ------------ | -------- | --------------------------------------------------- | --------------------- |
-| `startDate` | string       | Yes      | Start date in YYYY-MM or YYYY format                | `'2020-01'`           |
-| `endDate`   | string\|null | No       | End date in YYYY-MM or YYYY format, null if current | `'2023-12'` or `null` |
+| `startDate` | string       | Yes      | Start date in MM/YYYY or YYYY format                | `'01/2020'`           |
+| `endDate`   | string\|null | No       | End date in MM/YYYY or YYYY format, null if current | `'12/2023'` or `null` |
 | `isPresent` | boolean      | Yes      | true if currently ongoing, false otherwise          | `true` or `false`     |
 
 **Examples:**
@@ -343,7 +343,7 @@ All array items in `workExperience`, `education`, `projects`, and `additionalInf
 [
     'company' => 'ABC Corp',
     'position' => 'Senior Engineer',
-    'startDate' => '2020-01',
+    'startDate' => '01/2020',
     'endDate' => null,
     'isPresent' => true,
     // ...
@@ -372,7 +372,7 @@ All array items in `workExperience`, `education`, `projects`, and `additionalInf
 // Project (ongoing)
 [
     'name' => 'E-commerce Platform',
-    'startDate' => '2025-06',
+    'startDate' => '06/2025',
     'endDate' => null,
     'isPresent' => true,
     'description' => ['Building scalable platform...'],
@@ -507,7 +507,7 @@ $updatedCv = ResumeX::cv()->update('cv_xyz789', [
             'company' => 'New Company',
             'position' => 'Lead Engineer',
             'location' => 'Tokyo',
-            'startDate' => '2026-01',
+            'startDate' => '01/2026',
             'endDate' => null,
             'isPresent' => true,
             'description' => ['Leading team of 5...'],

@@ -59,7 +59,7 @@ ResumeX::cv()->update($cvId, [
             'company' => 'New Company',
             'position' => 'Senior Engineer',
             'location' => 'Tokyo',
-            'startDate' => '2026-01',
+            'startDate' => '01/2026',
             'endDate' => null,
             'isPresent' => true,
             'description' => ['Leading team of 5 engineers'],

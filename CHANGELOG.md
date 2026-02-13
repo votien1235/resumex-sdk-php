@@ -12,8 +12,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Date field structure changed for `workExperience`, `education`, `projects`, and `additionalInformation`**
   - **OLD**: Single `date` field with free-text string (e.g., `'date' => 'Jan 2020 - Present'`)
   - **NEW**: Three structured fields:
-    - `startDate` (string, required) - Format: `YYYY-MM` or `YYYY`
-    - `endDate` (string|null, optional) - Format: `YYYY-MM` or `YYYY`, `null` if currently ongoing
+    - `startDate` (string, required) - Format: `MM/YYYY` or `YYYY`
+    - `endDate` (string|null, optional) - Format: `MM/YYYY` or `YYYY`, `null` if currently ongoing
     - `isPresent` (boolean, required) - `true` if currently ongoing, `false` otherwise
 
 ### Migration Guide
@@ -46,7 +46,83 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     [
         'company' => 'ABC Corp',
         'position' => 'Engineer',
-        'startDate' => '2020-01',
+        'startDate' => '01/2020',
+        'endDate' => null,
+        'isPresent' => true,
+        // ...
+    ],
+],
+'education' => [
+    [
+        'school' => 'University',
+        'degree' => 'Bachelor',
+        'startDate' => '2015-09',
+        'endDate' => '2019-06',
+        'isPresent' => false,
+        // ...
+    ],
+],
+```
+
+### Benefits of New Structure
+
+- ✅ **Consistent date format** across all sections
+- ✅ **Better sorting** and filtering capabilities
+- ✅ **Clear indication** of ongoing positions/education
+- ✅ **Easier date calculations** (duration, gaps, etc.)
+- ✅ **ATS-friendly** structured data
+
+## [2.0.1] - 2026-02-13
+
+### Fixed
+- **Date format documentation corrected to MM/YYYY**
+  - All examples and documentation now use correct `MM/YYYY` format (e.g., `'01/2020'`)
+  - Previously showed incorrect `YYYY-MM` format (e.g., `'2020-01'`)
+  - Updated files: README.md, MIGRATION_V2.md, examples/update-cv.php, QUICK_REFERENCE_UPDATE_API.md, SDK_UPDATE_SUMMARY.md, src/Resources/CV.php
+  - No code changes - API already accepted MM/YYYY format correctly
+
+## [2.0.0] - 2026-02-13
+
+### ⚠️ BREAKING CHANGES
+
+- **Date field structure changed for `workExperience`, `education`, `projects`, and `additionalInformation`**
+  - **OLD**: Single `date` field with free-text string (e.g., `'date' => 'Jan 2020 - Present'`)
+  - **NEW**: Three structured fields:
+    - `startDate` (string, required) - Format: `MM/YYYY` or `YYYY`
+    - `endDate` (string|null, optional) - Format: `MM/YYYY` or `YYYY`, `null` if currently ongoing
+    - `isPresent` (boolean, required) - `true` if currently ongoing, `false` otherwise
+
+### Migration Guide
+
+**Before (v1.2.0 and earlier):**
+
+```php
+'workExperience' => [
+    [
+        'company' => 'ABC Corp',
+        'position' => 'Engineer',
+        'date' => 'Jan 2020 - Present',
+        // ...
+    ],
+],
+'education' => [
+    [
+        'school' => 'University',
+        'degree' => 'Bachelor',
+        'date' => 'Sep 2015 - Jun 2019',
+        // ...
+    ],
+],
+```
+
+**After (v2.0.0+):**
+
+```php
+'workExperience' => [
+    [
+        'company' => 'ABC Corp',
+        'position' => 'Engineer',
+        'startDate' => '01/2020',
         'endDate' => null,
         'isPresent' => true,
         // ...

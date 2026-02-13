@@ -66,7 +66,7 @@ Updated ResumeX PHP SDK to support new structured date format for work experienc
     [
         'company' => 'ABC Corp',
         'position' => 'Engineer',
-        'startDate' => '2020-01',
+        'startDate' => '01/2020',
         'endDate' => null,
         'isPresent' => true,
         // ...
@@ -85,8 +85,8 @@ Updated ResumeX PHP SDK to support new structured date format for work experienc
 
 | Field       | Type         | Required | Description                                |
 | ----------- | ------------ | -------- | ------------------------------------------ |
-| `startDate` | string       | Yes      | Format: YYYY-MM or YYYY                    |
-| `endDate`   | string\|null | No       | Format: YYYY-MM or YYYY, null if ongoing   |
+| `startDate` | string       | Yes      | Format: MM/YYYY or YYYY                    |
+| `endDate`   | string\|null | No       | Format: MM/YYYY or YYYY, null if ongoing   |
 | `isPresent` | boolean      | Yes      | true if currently ongoing, false otherwise |
 
 ## Benefits
@@ -139,8 +139,8 @@ Updated ResumeX PHP SDK to support new structured date format for work experienc
 
 The API should now expect:
 
-- `startDate` (string, required) - Format: YYYY-MM or YYYY
-- `endDate` (string|null, optional) - Format: YYYY-MM or YYYY
+- `startDate` (string, required) - Format: MM/YYYY or YYYY
+- `endDate` (string|null, optional) - Format: MM/YYYY or YYYY
 - `isPresent` (boolean, required) - true/false
 
 The old `date` field should be deprecated and removed in a future version.
