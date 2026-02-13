@@ -1,7 +1,6 @@
 {
   "name": "resumex/sdk",
   "description": "Official PHP SDK for ResumeX API - AI-powered CV generation platform",
-  "version": "1.2.0",
   "type": "library",
   "license": "MIT",
   "authors": [
