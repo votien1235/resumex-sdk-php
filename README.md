@@ -403,34 +403,37 @@ All array items in `workExperience`, `education`, `projects`, and `additionalInf
 
 **webCv object (Japanese-specific fields):**
 
-| Field                                                 | Type   | Description                          |
-| ----------------------------------------------------- | ------ | ------------------------------------ |
-| `webCv.qualificationList[]`                           | array  | 資格一覧 (Licenses & Qualifications) |
-| `webCv.qualificationList[].date`                      | string | 取得年月 (e.g., "2018年6月")         |
-| `webCv.qualificationList[].qualification_name`        | string | 資格名                               |
-| `webCv.cv_work_experience[]`                          | array  | 職務経歴詳細 (Detailed work history) |
-| `webCv.cv_work_experience[].company_name`             | string | 会社名                               |
-| `webCv.cv_work_experience[].business_description`     | string | 事業内容                             |
-| `webCv.cv_work_experience[].capital`                  | string | 資本金                               |
-| `webCv.cv_work_experience[].employee_number`          | string | 従業員数                             |
-| `webCv.cv_work_experience[].classification`           | string | 雇用形態 (1=正社員, etc.)            |
-| `webCv.cv_work_experience[].job_type`                 | string | 職種                                 |
-| `webCv.cv_work_experience[].job_detail`               | string | 職務内容                             |
-| `webCv.cv_work_experience[].sales`                    | string | 売上高                               |
-| `webCv.cv_work_experience[].retirement`               | string | 0=在職中, 1=退職済み                 |
-| `webCv.cv_work_experience[].affiliation_period_year`  | string | 入社年                               |
-| `webCv.cv_work_experience[].affiliation_period_month` | string | 入社月                               |
-| `webCv.cv_work_experience[].affiliation_period_day`   | string | 入社日                               |
-| `webCv.applying_info`                                 | string | 志望動機                             |
-| `webCv.experience_info`                               | string | 自己PR・特技・長所など               |
-| `webCv.personal_info`                                 | string | 本人希望記入欄                       |
-| `webCv.cv_job_summary`                                | string | 職務要約                             |
-| `webCv.cv_experience_skill_knowledge`                 | string | 活かせる経験・スキル・知識           |
-| `webCv.cv_qualifications_held`                        | string | 保有資格                             |
-| `webCv.cv_self_promotion`                             | string | 自己PR                               |
-| `webCv.spouse`                                        | int    | 配偶者: 0=なし, 1=あり               |
-| `webCv.spouse_support`                                | int    | 配偶者の扶養義務: 0=なし, 1=あり     |
-| `webCv.commuting_time`                                | string | 通勤時間                             |
+| Field                                                 | Type   | Description                                   |
+| ----------------------------------------------------- | ------ | --------------------------------------------- |
+| `webCv.prefecture`                                    | string | 都道府県 (e.g., "東京都")                     |
+| `webCv.municipality`                                  | string | 市区町村 (e.g., "千代田区")                   |
+| `webCv.address_after`                                 | string | 以降の住所 (丁目・番地・建物名など)           |
+| `webCv.qualificationList[]`                           | array  | 資格一覧 (Licenses & Qualifications)          |
+| `webCv.qualificationList[].date`                      | string | 取得年月 (e.g., "2018年6月")                  |
+| `webCv.qualificationList[].qualification_name`        | string | 資格名                                        |
+| `webCv.cv_work_experience[]`                          | array  | 職務経歴詳細 (Detailed work history)          |
+| `webCv.cv_work_experience[].company_name`             | string | 会社名                                        |
+| `webCv.cv_work_experience[].business_description`     | string | 事業内容                                      |
+| `webCv.cv_work_experience[].capital`                  | string | 資本金                                        |
+| `webCv.cv_work_experience[].employee_number`          | string | 従業員数                                      |
+| `webCv.cv_work_experience[].classification`           | string | 雇用形態 (1=正社員, etc.)                     |
+| `webCv.cv_work_experience[].job_type`                 | string | 職種                                          |
+| `webCv.cv_work_experience[].job_detail`               | string | 職務内容                                      |
+| `webCv.cv_work_experience[].sales`                    | string | 売上高                                        |
+| `webCv.cv_work_experience[].retirement`               | string | 0=在職中, 1=退職済み                          |
+| `webCv.cv_work_experience[].affiliation_period_year`  | string | 入社年                                        |
+| `webCv.cv_work_experience[].affiliation_period_month` | string | 入社月                                        |
+| `webCv.cv_work_experience[].affiliation_period_day`   | string | 入社日                                        |
+| `webCv.applying_info`                                 | string | 志望動機                                      |
+| `webCv.experience_info`                               | string | 自己PR・特技・長所など                        |
+| `webCv.personal_info`                                 | string | 本人希望記入欄                                |
+| `webCv.cv_job_summary`                                | string | 職務要約                                      |
+| `webCv.cv_experience_skill_knowledge`                 | string | 活かせる経験・スキル・知識                    |
+| `webCv.cv_qualifications_held`                        | string | 保有資格                                      |
+| `webCv.cv_self_promotion`                             | string | 自己PR                                        |
+| `webCv.spouse`                                        | int    | 配偶者: 0=なし, 1=あり                        |
+| `webCv.spouse_support`                                | int    | 配偶者の扶養義務: 0=なし, 1=あり              |
+| `webCv.commuting_time`                                | string | 通勤時間                                      |
 
 ### Using Dependency Injection
 

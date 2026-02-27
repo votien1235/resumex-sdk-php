@@ -81,6 +81,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Minor whitespace and example cleanups in `examples/update-cv.php`
   - No API or runtime code changes
 
+### Documentation
+
+- Documented Japanese address fields in README for `professional-grid` template:
+  - `webCv.prefecture`
+  - `webCv.municipality`
+  - `webCv.address_after`
+
 ## [2.0.1] - 2026-02-13
 
 ### Fixed
