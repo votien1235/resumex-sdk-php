@@ -72,6 +72,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - ✅ **Easier date calculations** (duration, gaps, etc.)
 - ✅ **ATS-friendly** structured data
 
+## [2.0.2] - 2026-02-27
+
+### Fixed
+
+- **Changelog and release notes polishing**
+  - Improved formatting and readability for `RELEASE_v2.0.1.md`
+  - Minor whitespace and example cleanups in `examples/update-cv.php`
+  - No API or runtime code changes
+
 ## [2.0.1] - 2026-02-13
 
 ### Fixed
