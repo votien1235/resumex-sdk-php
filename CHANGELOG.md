@@ -75,6 +75,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [2.0.1] - 2026-02-13
 
 ### Fixed
+
 - **Date format documentation corrected to MM/YYYY**
   - All examples and documentation now use correct `MM/YYYY` format (e.g., `'01/2020'`)
   - Previously showed incorrect `YYYY-MM` format (e.g., `'2020-01'`)

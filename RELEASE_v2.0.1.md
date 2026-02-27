@@ -9,11 +9,14 @@
 ## ✅ What Was Fixed
 
 ### Problem
+
 The SDK documentation and examples were showing **incorrect date format**:
+
 - ❌ Documentation showed: `'startDate' => '2020-01'` (YYYY-MM)
 - ✅ Actual API expects: `'startDate' => '01/2020'` (MM/YYYY)
 
 ### Solution
+
 Updated all documentation and examples to use the correct **MM/YYYY** format.
 
 ## 📝 Files Updated
@@ -29,6 +32,7 @@ Updated all documentation and examples to use the correct **MM/YYYY** format.
 ## 🔧 Changes Made
 
 ### Before (v2.0.0 - INCORRECT in docs)
+
 ```php
 'workExperience' => [
     [
@@ -42,6 +46,7 @@ Updated all documentation and examples to use the correct **MM/YYYY** format.
 ```
 
 ### After (v2.0.1 - CORRECT)
+
 ```php
 'workExperience' => [
     [
@@ -64,12 +69,14 @@ According to the **ResumeX API Backend Specification**:
 ```
 
 ### Valid Examples:
+
 - ✅ `"01/2020"` - Full date (January 2020)
 - ✅ `"12/2023"` - Full date (December 2023)
 - ✅ `"2020"` - Year only
 - ✅ `"2023"` - Year only
 
 ### Invalid Examples:
+
 - ❌ `"2020-01"` - YYYY-MM format (WRONG)
 - ❌ `"2023-12"` - YYYY-MM format (WRONG)
 - ❌ `"01-2020"` - MM-YYYY with dash (WRONG)
@@ -77,13 +84,16 @@ According to the **ResumeX API Backend Specification**:
 ## ⚠️ Important Notes
 
 ### No Code Changes
+
 - **The API already worked correctly** with MM/YYYY format
 - Only documentation was incorrect
 - **No breaking changes** in this release
 - **No migration needed** if you were already using MM/YYYY
 
 ### If You Were Using YYYY-MM
+
 If you followed the old (incorrect) documentation and used YYYY-MM format:
+
 1. Update your code to use MM/YYYY format
 2. Example conversion:
    - `'2020-01'` → `'01/2020'`
@@ -115,14 +125,14 @@ versions : v2.0.1, v2.0.0, 1.2.0, v1.1.1, v1.1.0, v1.0.0
 
 ## 📋 Version History
 
-| Version | Date | Type | Description |
-|---------|------|------|-------------|
-| v2.0.1 | 2026-02-13 | Fix | Date format documentation corrected to MM/YYYY |
-| v2.0.0 | 2026-02-13 | Major | Structured date fields (startDate, endDate, isPresent) |
-| v1.2.0 | - | Minor | PATCH API support with update() method |
-| v1.1.1 | - | Patch | Fix Japanese CV fields and error handling |
-| v1.1.0 | - | Minor | Japanese CV support |
-| v1.0.0 | - | Major | Initial release |
+| Version | Date       | Type  | Description                                            |
+| ------- | ---------- | ----- | ------------------------------------------------------ |
+| v2.0.1  | 2026-02-13 | Fix   | Date format documentation corrected to MM/YYYY         |
+| v2.0.0  | 2026-02-13 | Major | Structured date fields (startDate, endDate, isPresent) |
+| v1.2.0  | -          | Minor | PATCH API support with update() method                 |
+| v1.1.1  | -          | Patch | Fix Japanese CV fields and error handling              |
+| v1.1.0  | -          | Minor | Japanese CV support                                    |
+| v1.0.0  | -          | Major | Initial release                                        |
 
 ## 🎯 Summary
 
@@ -133,5 +143,6 @@ If you were already using the correct MM/YYYY format, **you don't need to change
 ---
 
 **Questions or Issues?**
+
 - GitHub Issues: https://github.com/votien1235/resumex-sdk-php/issues
 - Email: tech@resumex.com

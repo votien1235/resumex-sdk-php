@@ -30,7 +30,7 @@ $client = new Client([
 
 try {
     $cvId = 'cv_xyz789abc123'; // The CV ID you want to update
-    
+
     $updatedCv = $client->cv()->update($cvId, [
         // Update basic info
         'firstName' => 'NGUYEN VAN',
@@ -40,10 +40,10 @@ try {
         'location' => 'Tokyo, Japan',
         'linkedinUrl' => 'https://linkedin.com/in/newusername',
         'githubUrl' => 'https://github.com/newusername',
-        
+
         // Update professional summary
         'professionalSummary' => 'Senior Full-Stack Engineer with 8+ years of experience...',
-        
+
         // Update work experience (replaces all existing work experience)
         'workExperience' => [
             [
@@ -74,7 +74,7 @@ try {
                 'technologies' => ['PHP', 'Laravel', 'Vue.js'],
             ],
         ],
-        
+
         // Update education
         'education' => [
             [
@@ -94,7 +94,7 @@ try {
                 'isPresent' => false,
             ],
         ],
-        
+
         // Update skills
         'skills' => [
             ['category' => 'Backend', 'items' => ['PHP', 'Laravel', 'NestJS', 'Node.js']],
@@ -102,15 +102,14 @@ try {
             ['category' => 'DevOps', 'items' => ['Docker', 'AWS', 'CI/CD']],
         ],
     ]);
-    
+
     echo "CV updated successfully!\n";
     echo "CV ID: " . $updatedCv['id'] . "\n";
     echo "Updated at: " . $updatedCv['updatedAt'] . "\n";
-    
 } catch (ResumeXException $e) {
     echo "Error updating CV: " . $e->getMessage() . "\n";
     echo "Error code: " . $e->getErrorCode() . "\n";
-    
+
     if ($e->isValidationError()) {
         print_r($e->getErrors());
     }
@@ -122,7 +121,7 @@ try {
 
 try {
     $cvId = 'cv_japanese_123'; // The Japanese CV ID you want to update
-    
+
     $updatedCv = $client->cv()->update($cvId, [
         // Update top-level basic info
         'firstName' => '太郎',
@@ -133,18 +132,23 @@ try {
         'phoneNumber' => '090-1234-5678',
         'postCode' => '100-0002',
         'location' => '東京都千代田区丸の内2-2-2 マンション202',
-        
+
         // Birth date
         'birthYear' => '1990',
         'birthMonth' => '5',
         'birthDay' => '15',
         'gender' => 'male',
-        
+
         // Update profile photo
         'profilePhoto' => 'https://example.com/new-photo.jpg',
-        
+
         // Update Japanese CV specific data
         'webCv' => [
+            // Update basic address fields
+            'prefecture' => '東京都',
+            'municipality' => '千代田区',
+            'address_after' => '1-2-3',
+
             // Update career history (職歴)
             'careerHistory' => [
                 [
@@ -160,7 +164,7 @@ try {
                     'event' => '△△株式会社 入社（現在に至る）',
                 ],
             ],
-            
+
             // Update qualifications (資格)
             'qualificationList' => [
                 [
@@ -176,7 +180,7 @@ try {
                     'qualification_name' => '応用情報技術者試験',
                 ],
             ],
-            
+
             // Update detailed work experience (職務経歴書)
             'cv_work_experience' => [
                 [
@@ -214,7 +218,7 @@ try {
                     'affiliation_period_end_day' => '31',
                 ],
             ],
-            
+
             // Update text sections
             'applying_info' => '御社の先進的な技術と企業文化に強く魅力を感じ、応募させていただきました...',
             'experience_info' => '私の強みはチームワークとコミュニケーション能力です。前職では...',
@@ -223,18 +227,17 @@ try {
             'cv_experience_skill_knowledge' => 'PHP, Laravel, JavaScript, React, AWS, Docker, Git',
             'cv_qualifications_held' => '普通自動車免許、TOEIC 850点、応用情報技術者',
             'cv_self_promotion' => '新しい技術への学習意欲が高く、常にスキルアップを心がけています...',
-            
+
             // Family info
             'spouse' => 1,
             'spouse_support' => 0,
             'commuting_time' => '45分',
         ],
     ]);
-    
+
     echo "Japanese CV updated successfully!\n";
     echo "CV ID: " . $updatedCv['id'] . "\n";
     echo "Updated at: " . $updatedCv['updatedAt'] . "\n";
-    
 } catch (ResumeXException $e) {
     echo "Error updating Japanese CV: " . $e->getMessage() . "\n";
 }
@@ -245,16 +248,15 @@ try {
 
 try {
     $cvId = 'cv_xyz789';
-    
+
     // You can update only the fields you need to change
     $updatedCv = $client->cv()->update($cvId, [
         'phoneNumber' => '090-9999-8888',
         'location' => 'Osaka, Japan',
         'professionalSummary' => 'Updated professional summary...',
     ]);
-    
+
     echo "CV partially updated successfully!\n";
-    
 } catch (ResumeXException $e) {
     echo "Error: " . $e->getMessage() . "\n";
 }
@@ -274,11 +276,11 @@ try {
         'location' => 'Tokyo',
         // ... other fields from your database
     ];
-    
+
     // Step 2: Check if CV exists in candidates_web_cv table
     // (assuming you have a mapping table with cv_id)
     $cvId = 'cv_from_database'; // Get from your candidates_web_cv table
-    
+
     if ($cvId) {
         // Step 3: Update CV with latest data from your system
         $client->cv()->update($cvId, [
@@ -289,12 +291,11 @@ try {
             'location' => $candidate['location'],
             // Map other fields...
         ]);
-        
+
         echo "CV synced successfully! Ready to open editor.\n";
     } else {
         echo "No CV found. Need to generate a new one first.\n";
     }
-    
 } catch (ResumeXException $e) {
     echo "Sync error: " . $e->getMessage() . "\n";
 }
